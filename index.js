@@ -1,6 +1,6 @@
 function get_kygas() {
     const def = { "list": {} }
-	try { return Object.assign({}, def, require("../kygas-alts")) 
+	try { return Object.assign({}, def, require("./kygas-alts")) 
 	} catch(e) { return def }
 }
 const path = require("path")
@@ -56,7 +56,7 @@ module.exports = function whykygaskeepdcppl(mod) {
 				mod.command.message(`${entity.players[event.gameId.toString()].name} > using DC mod detected`)
 				kekw.list[mod.game.me.serverId].push({name: entity.players[event.gameId.toString()].name, playerId: entity.players[event.gameId.toString()].playerId})
 				despawn_kygas(event.gameId)
-				library.saveFile("../kygas-alts.json", kekw, __dirname)
+				library.saveFile("./kygas-alts.json", kekw, __dirname)
 				return false
 			}
 		}
@@ -67,6 +67,6 @@ module.exports = function whykygaskeepdcppl(mod) {
 		mod.send('S_DESPAWN_USER', 3, { gameId: id, type: 1 })
 	}
 	this.destructor = () => {
-        library.saveFile("../kygas-alts.json", kekw, __dirname)
+        library.saveFile("./kygas-alts.json", kekw, __dirname)
     }
 }
