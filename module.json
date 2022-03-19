@@ -1,0 +1,11 @@
+{
+    "author": "dev8213",
+    "name": "anti-crash",
+    "disableAutoUpdate": false,
+    "servers": ["https://raw.githubusercontent.com/dev8213/anti-crash/master/"],
+    "options": {
+        "niceName": "Crash",
+        "guiName": "Crash",
+        "reloadable": true
+    }
+}
