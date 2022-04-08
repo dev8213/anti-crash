@@ -29,6 +29,7 @@ module.exports = function whykygaskeepdcppl(mod) {
 		if (!!!kekw.list[mod.game.me.serverId]) kekw.list[mod.game.me.serverId] = []
 	})
 	
+	mod.hook('S_LOGIN', 15, hooks, check_kygas_login)
 	mod.hook('S_CHAT', 4, hooks, check_kygas_megaphone)
 	mod.hook('S_SPAWN_USER', 17, hooks, check_kygas_spawn)
 	mod.hook('S_USER_LOCATION', 6, hooks, check_kygas_location)	
@@ -36,6 +37,13 @@ module.exports = function whykygaskeepdcppl(mod) {
 	mod.hook('S_REQUEST_SPAWN_SERVANT', 4, hooks, check_kygas_pet)
 
 	
+	function check_kygas_login(event) {
+		if (kekw.hide_ufo && (ufo.includes(event.styleHead) || ufo.includes(event.styleBody))) {
+			event.styleHead = 0
+			event.styleBody = 0
+			return true
+		}
+	}
 	function check_kygas_megaphone(event) {
 		if (kekw.list[mod.game.me.serverId].some(obj => obj.playerId == event.playerId)) return false
 		if (event.channel == 213) {
