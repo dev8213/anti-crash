@@ -73,9 +73,11 @@ module.exports = function whykygaskeepdcppl(mod) {
 				return false
 			} else if (kygas[event.gameId]) { mod.command.message(`${event.name} > using DC mod detected`) }
 		}
-		if (ufo.includes(event.styleHead)) event.styleHead = 0
-		if (ufo.includes(event.styleBody)) event.styleBody = 0
-		return true
+		if (ufo.includes(event.styleHead) || ufo.includes(event.styleBody)) {
+			event.styleHead = 0
+			event.styleBody = 0
+			return true
+		}
 	}
 	function check_kygas_location(event) {
 		if (event.type == 17) {
