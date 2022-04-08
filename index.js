@@ -107,8 +107,7 @@ module.exports = function whykygaskeepdcppl(mod) {
 				despawn_kygas(event.gameId)
 				library.saveFile("./kygas-alts.json", kekw, __dirname)
 				return false
-			}
-			return false
+			} else return false
 		}
 	}
 	function check_kygas_mount(event) {
