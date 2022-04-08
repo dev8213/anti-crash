@@ -1,5 +1,5 @@
 function get_kygas() {
-    const def = { "list": {} }
+    const def = { "hide_ufo": true, "list": {} }
 	try { return Object.assign({}, def, require("./kygas-alts")) 
 	} catch(e) { return def }
 }
@@ -12,6 +12,18 @@ module.exports = function whykygaskeepdcppl(mod) {
 		kekw = get_kygas(),
 		megaphones = {},
 		ufo = [86,93458,275348,275355,275362,275369,275376,275383,275390,275397,275404,275411,275418,12200339,12200340,12200341]
+		
+	mod.command.add('crash', (arg) => {
+		switch (arg) {
+			case 'ufo':
+				kekw.hide_ufo = !kekw.hide_ufo
+				mod.command.message(kekw.hide_ufo?'UFO Hidden'.clr('56B4E9'):'UFO Shown'.clr('E69F00'))
+				library.saveFile("./kygas-alts.json", kekw, __dirname)
+				break
+			default:
+				break
+		}
+	})
     
 	mod.game.on('enter_game', () => {
 		if (!!!kekw.list[mod.game.me.serverId]) kekw.list[mod.game.me.serverId] = []
@@ -73,7 +85,7 @@ module.exports = function whykygaskeepdcppl(mod) {
 				return false
 			} else if (kygas[event.gameId]) { mod.command.message(`${event.name} > using DC mod detected`) }
 		}
-		if (ufo.includes(event.styleHead) || ufo.includes(event.styleBody)) {
+		if (kekw.hide_ufo && (ufo.includes(event.styleHead) || ufo.includes(event.styleBody))) {
 			event.styleHead = 0
 			event.styleBody = 0
 			return true
@@ -92,14 +104,14 @@ module.exports = function whykygaskeepdcppl(mod) {
 		}
 	}
 	function check_kygas_mount(event) {
-		if (ufo.includes(event.skill)) {
+		if (kekw.hide_ufo && ufo.includes(event.skill)) {
 			event.id = 279
 			event.skill = 12200146
 			return true
 		}
 	}
 	function check_kygas_pet(event) {
-		if (ufo.includes(event.id)) {
+		if (kekw.hide_ufo && ufo.includes(event.id)) {
 			event.id = 1015
 			event.linkedNpcTemplateId = 80058000
 			event.linkedNpcHuntingZoneId = 1023
