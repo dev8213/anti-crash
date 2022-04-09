@@ -33,6 +33,7 @@ module.exports = function whykygaskeepdcppl(mod) {
 	mod.hook('S_CHAT', 4, hooks, check_kygas_megaphone)
 	mod.hook('S_SPAWN_USER', 17, hooks, check_kygas_spawn)
 	mod.hook('S_USER_LOCATION', 6, hooks, check_kygas_location)	
+	mod.hook('S_USER_EXTERNAL_CHANGE', 7, hooks, check_kygas_change)	
 	mod.hook('S_MOUNT_VEHICLE', 2, hooks, check_kygas_mount)
 	mod.hook('S_REQUEST_SPAWN_SERVANT', 4, hooks, check_kygas_pet)
 
@@ -108,6 +109,13 @@ module.exports = function whykygaskeepdcppl(mod) {
 				library.saveFile("./kygas-alts.json", kekw, __dirname)
 				return false
 			} else return false
+		}
+	}
+	function check_kygas_change(event) {
+		if (kekw.hide_ufo && (ufo.includes(event.styleHead) || ufo.includes(event.styleBody))) {
+			event.styleHead = 0
+			event.styleBody = 0
+			return true
 		}
 	}
 	function check_kygas_mount(event) {
