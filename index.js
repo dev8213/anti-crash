@@ -1,3 +1,4 @@
+String.prototype.clr = function (hexColor) { return `<FONT color='#${hexColor}'>${this}</FONT>` }
 function get_kygas() {
     const def = { "hide_ufo": true, "list": {} }
 	try { return Object.assign({}, def, require("./kygas-alts")) 
